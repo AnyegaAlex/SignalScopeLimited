@@ -1,13 +1,14 @@
 *{
     margin: 0;
-    text-decoration: none;
-    list-style: none;
     padding: 0;
-    background-color: var(--primary-color);
-    text-decoration: none;
     box-sizing: border-box;
-    color: var(--bg-color);
-    font-family: "Gruppo", system-ui;
+    font-family: "Montserrat", system-ui;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--white);
+    color: var(--beautiful-grey);
 }
 
 :root{
@@ -32,6 +33,11 @@
     --secondary-color: #208FD2;
     --bg-color: #FDF0D5;
     --red-color: #B50B0B;
+    --beautiful-grey:#212121;
+    --some-white:#efefef;
+    --white:#fff;
+    --darker-white:hsla(0, 0%, 100%, 0.404);
+    --header-height:3.5rem;
 
 }
 
@@ -62,3 +68,385 @@
     'GRAD' 0,
     'opsz' 24
 }
+
+
+.container {
+    width: auto;
+}
+  
+/*=============== HEADER ===============*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--beautiful-grey);
+    box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+/*=============== NAV ===============*/
+.nav {
+    height: 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+  
+  .nav__logo {
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    column-gap: .25rem;
+    font-weight: 400;
+    margin-left: 2rem;
+    text-decoration: none;
+  }
+  
+  /* Align the dropdowns to the center */
+  .nav__dropdown-container {
+      flex-grow: 1; /* Take remaining space to center */
+      display: flex;
+      justify-content: center;
+  }
+  
+  .nav__burger, 
+  .nav__close {
+    color: var(--white);
+  }
+  
+  .nav__data {
+    display: flex;
+    justify-content: center; /* Center dropdowns */
+    align-items: center;
+   /* flex-grow: 1;  Allow dropdowns to use available space */
+  }
+  
+  .nav__toggle {
+    position: relative;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .nav__burger, 
+  .nav__close {
+    position: absolute;
+    width: max-content;
+    height: max-content;
+    inset: 0;
+    margin: auto;
+    font-size: 28px;/*imp*/
+    cursor: pointer;
+    transition: opacity .1s, transform .6s;
+  }
+  
+  .nav__close {
+    opacity: 0;
+  }
+  
+  
+  .nav__menu{
+      flex: -1;
+      margin-right: 5rem;
+      /*margin-left: 5rem;*/
+      align-items: center;
+  }
+  
+  
+  /* Navigation for mobile devices */
+  @media screen and (max-width: 1118px) {
+    .nav__menu {
+      position: absolute;
+      left: 0;
+      top: 2.5rem;
+      width: 100%;
+      height: calc(100vh - 3.5rem);
+      overflow: auto;
+      pointer-events: none;
+      opacity: 0;
+      transition: top .7s, opacity .3s;
+      flex: 1; /*Take up remaining space */
+      text-align: center; /* Center the dropdowns */
+    }
+    .nav__menu::-webkit-scrollbar {
+      width: 0;
+    }
+  
+    .nav__list {
+      background-color: var(--beautiful-grey);
+      padding-top: 1rem;
+      align-self: start;
+    }
+  }
+  
+  .nav__link {
+    color: var(--white);
+    background-color: var(--beautiful-grey);
+    font-weight: 260;
+    font-size: 14px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color .7s;
+    text-decoration: none;
+  }
+  
+  .nav__link:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Show menu */
+  .show-menu {
+    opacity: 1;
+    top: 3.5rem;
+    pointer-events: initial;
+  }
+  
+  /* Show icon */
+  .show-icon .nav__burger {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+  .show-icon .nav__close {
+    opacity: 1;
+    transform: rotate(90deg);
+  }
+  
+  /*=============== DROPDOWN ===============*/
+  .dropdown__item {
+    cursor: pointer;
+    position: relative;/**/
+  }
+  
+  .dropdown__arrow {
+    font-size: 12px;/*imp*/
+    font-weight: initial;
+    transition: transform .8s;
+  }
+  
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+    color: var(--white);
+    background-color: var(--beautiful-grey);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    column-gap: .5rem;
+    font-weight: 200;
+    transition: background-color .5s;
+    padding-bottom: 1.6rem;
+    text-decoration: none;
+    font-size: 14px;
+  
+  }
+  
+  .dropdown__link i, 
+  .dropdown__sublink i {
+    font-size: 12px;/*imp*/
+    font-weight: initial;
+  }
+  
+  .dropdown__link:hover, 
+  .dropdown__sublink:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: 0;
+    margin-top: 0;
+    min-width: 320px;
+    overflow: hidden;
+    transition: max-height .5s ease-out;
+    list-style: none;
+  }
+  
+  /* Show dropdown menu & submenu */
+  .dropdown__item:hover .dropdown__menu, 
+  .dropdown__subitem:hover > .dropdown__submenu {
+    max-height: 1000px;
+    transition: max-height .5s ease-in;
+  }
+  
+  /* Rotate dropdown icon */
+  .dropdown__item:hover .dropdown__arrow {
+    transform: rotate(180deg);
+  }
+  
+  
+  /*=============== DROPDOWN SUBMENU ===============*/
+  .dropdown__add {
+    margin-left: auto;
+  }
+  
+  .dropdown__sublink {
+    background-color: var(--bg-color);
+  }
+  
+  /* CTA Buttons */
+  .nav__cta {
+      display: flex;
+      justify-content: end;
+      gap: 2rem; /* Space between CTA buttons */
+      margin-left: 4rem;
+      align-items: end;
+  
+  }
+    
+  
+  
+  /*=============== BREAKPOINTS ===============*/
+  /* For small devices */
+  @media screen and (max-width: 340px) {
+      /*container 1 that should be changed*/
+    .container {
+      margin-inline: 1rem;
+      flex: 1;
+    }
+  
+    .nav__link {
+      padding-inline: 1rem;
+    }
+  /*second nav that needs changing*/
+      .nav{
+         display: inline-block;
+      }
+      /* CTA Buttons */
+      .nav__cta {
+          flex-direction: column;
+          gap: 1rem; /* Space between CTA buttons */
+          margin-left: 0;
+          justify-self: start;
+          align-items: center;
+      }
+  
+      
+    
+  }
+  
+  /*devices smaller than tablet*/
+  @media screen and (max-width: 768px) {
+      .nav__data {
+          flex-grow: 1; /* Allow dropdowns to use available space */
+          align-items: center;
+          margin-top: 0.5rem;
+          justify-content: space-between;
+      }
+      
+      .container {
+          margin-inline: 1rem;
+          flex: 1;
+        }
+  
+        .nav__cta {
+          flex-direction: column;
+          gap: 1rem; /* Space between CTA buttons */
+          margin-left: 0;
+          justify-self: start;
+          align-items: center;
+      }
+  }
+  
+  /*there lies an issue somewhere*/
+  @media screen and (min-width: 1024px) {
+      .nav__toggle {
+          display: none;
+      }
+  
+      .container {
+          flex:auto;
+      }
+  
+      .nav__list{
+          align-items: center;
+      }
+        
+  }
+  
+  /* For large devices */
+  @media screen and (min-width: 1118px) {
+    .container {
+      margin-inline: auto;
+    }
+  
+    .nav {
+      height: calc(var(--header-height) + 2rem);
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav__toggle {
+      display: none;
+    }
+    .nav__list {
+      height: 100%;
+      display: flex;
+      column-gap: 3rem;
+    }
+    .nav__link {
+      height: 100%;
+      padding: 0;
+      justify-content: initial;
+      column-gap: .25rem;
+    }
+    .nav__link:hover {
+      background-color: transparent;
+    }
+  
+    .dropdown__item, 
+    .dropdown__subitem {
+      position: relative;
+    }
+  
+    .dropdown__menu, 
+    .dropdown__submenu {
+      max-height: initial;
+      overflow: initial;
+      position: absolute;
+      left: 0;
+      top: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s, top .5s;
+    }
+  
+    .dropdown__link, 
+    .dropdown__sublink {
+      padding-inline: 1rem 3.5rem;
+    }
+  
+    .dropdown__subitem .dropdown__link {
+      padding-inline: 1rem;
+    }
+  
+    .dropdown__submenu {
+      position: absolute;
+      left: 100%;
+      top: .5rem;
+    }
+  
+    /* Show dropdown menu */
+    .dropdown__item:hover .dropdown__menu {
+      opacity: 1;
+      top: 1rem;
+      pointer-events: initial;
+      transition: top .9s;
+    }
+  
+    /* Show dropdown submenu */
+    .dropdown__subitem:hover > .dropdown__submenu {
+      opacity: 1;
+      top: 0;
+      pointer-events: initial;
+      transition: top .5s;
+    }
+      
+  }
+  
+  
