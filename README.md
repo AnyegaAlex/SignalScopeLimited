@@ -4,9 +4,8 @@
 
   <div class="section">
         <span class="badge badge-status">Status: Active</span>
-        <span class="badge badge-license">License: CC BY-NC</span>
-        <span class="badge badge-python">Python 3.9+</span>
-        <span class="badge badge-django">Django 4.0+</span>
+<span class="badge badge-license">License: CC BY-NC</span><span class="badge badge-python">Python 3.9+</span>
+<span class="badge badge-django">Django 4.0+</span>
     </div>
 
 <div class="section">
